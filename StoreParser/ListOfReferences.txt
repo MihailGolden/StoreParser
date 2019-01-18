@@ -1,0 +1,10 @@
+﻿Core fundamentials - https://docs.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-2.2&tabs=windows
+
+Background tasks - https://blogs.msdn.microsoft.com/cesardelatorre/2017/11/18/implementing-background-tasks-in-microservices-with-ihostedservice-and-the-backgroundservice-class-net-core-2-x/
+- https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-2.2
+
+Timer - https://docs.microsoft.com/en-us/dotnet/api/system.threading.timer?view=netframework-4.7.2
+
+How to save the image to database and render it in ASP.NET Core - https://code.msdn.microsoft.com/How-to-save-Image-to-978a7b0b#content
+
+Serialize Entity Framework objects into JSON - https://stackoverflow.com/questions/657939/serialize-entity-framework-objects-into-json

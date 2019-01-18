@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using StoreParser.Models;
 using StoreParser.Parser;
@@ -30,14 +31,14 @@ namespace StoreParser
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            //background timer for parsing
-            services.AddSingleton<TimedHostedService>();
-
-
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<StoreContext>(options => options.UseSqlServer(connection));
+
+
+
+
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -50,10 +51,15 @@ namespace StoreParser
 
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            //background timer for parsing
+            //services.AddSingleton<IHostedService, TimedHostedService>();
+            services.AddSingleton<TimedHostedService>();
+            return services.BuildServiceProvider();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(TimedHostedService timer, IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory /*IParser<string[]> parser, */)
+        public void Configure(/*TimedHostedService timer, */IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env, ILoggerFactory loggerFactory /*IParser<string[]> parser, */)
         {
             loggerFactory.AddConsole();
 
@@ -78,33 +84,36 @@ namespace StoreParser
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.Run(async (context) =>
-            {
-                //timer block
-                //CancellationTokenSource cts = new CancellationTokenSource();
-                //var token = cts.Token;
-                //timer.StartAsync(token);
+            //app.Run(async (context) =>
+            //{
+            //    //    //timer block
+            //    CancellationTokenSource cts = new CancellationTokenSource();
+            //var token = cts.Token;
+                
+            //await timer.StartAsync(token);
 
 
-                var logger = loggerFactory.CreateLogger("RequestInfoLogger");
+            //    var logger = loggerFactory.CreateLogger("RequestInfoLogger");
 
-                ProDjShopParser parser = new ProDjShopParser();
-                List<string> strings = new List<string>();
-                ProDjShopParserSettings parserSettings = new ProDjShopParserSettings(1, 3);
-                ParserWorker<string[]> worker = new ParserWorker<string[]>(parser, parserSettings);
-                worker.Settings = parserSettings;
-                worker.Start();
-                worker.OnNewData += async (t, x) =>
-                {
-                    foreach (var header in x)
-                    {
-                        logger.LogError(header);
-                    }
-                    //strings.AddRange(x);
-                    //await context.Response.WriteAsync(x.Count().ToString());
-                };
-                await context.Response.WriteAsync("ok");
-            });
+            //    //    ProDjShopParser parser = new ProDjShopParser();
+            //    //    List<string> strings = new List<string>();
+            //    //    ProDjShopParserSettings parserSettings = new ProDjShopParserSettings(1, 3);
+            //    //    ParserWorker<string[]> worker = new ParserWorker<string[]>(parser, parserSettings);
+            //    //    worker.Settings = parserSettings;
+            //    //    worker.Start();
+            //    //    worker.OnNewData += async (t, x) =>
+            //    //    {
+            //    //        int counter = 1;
+            //    //        foreach (var header in x)
+            //    //        {
+            //    //            logger.LogDebug(counter.ToString() + ": " + header);
+            //    //            counter++;
+            //    //        }
+            //    //        //strings.AddRange(x);
+            //    //        //await context.Response.WriteAsync(x.Count().ToString());
+            //    //};
+            //    //    await context.Response.WriteAsync("ok");
+            //});
         }
     }
 }

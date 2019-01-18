@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "ProDjShopPaser";
+}
+<div class="container container-fluid">
+    <h1 class="page-header">ProDjShopPaser</h1>
+    <hr />
+
+    <div class="container">
+        <div class="row">
+            <a asp-controller="Admin" asp-action="StartParse">
+                <button class="btn btn-success">Start parsing</button>
+            </a>
+            <a asp-controller="Admin" asp-action="StopParse">
+                <button class="btn btn-danger">Stop parsing</button>
+            </a>
+        </div>
+        <div>
+            <h3>
+                Status of parser is:
+                <span class="label label-primary">@ViewData["TimerStatus"]</span>
+            </h3>
+        </div>
+    </div>
+</div>
+
+

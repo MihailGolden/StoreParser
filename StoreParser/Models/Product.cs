@@ -13,6 +13,8 @@ namespace StoreParser.Models
 
         public string Description { get; set; }
 
+        public string HyperLink { get; set; }
+
         public virtual List<Image> Images { get; set; }
         public virtual List<Price> Prices { get; set; }
 

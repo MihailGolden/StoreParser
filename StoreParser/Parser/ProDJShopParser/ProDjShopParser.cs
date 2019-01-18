@@ -19,12 +19,12 @@ namespace StoreParser.Parser.ProDJShopParser
         public string[] Parse(IHtmlDocument document)
         {
             var list = new List<string>();
-            var items = document.QuerySelectorAll("div.block-tov a");
+            var items = document.QuerySelectorAll("span.bt-name a");
                 //.Where(item => item.ClassName != null && item.ClassName.Contains("block-tov"));
 
             foreach (var item in items)
             {
-                list.Add(item.TextContent);
+                list.Add(item.Attributes["href"].Value);
             }
 
             return list.ToArray();
