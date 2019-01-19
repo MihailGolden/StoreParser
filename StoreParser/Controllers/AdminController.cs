@@ -8,6 +8,8 @@ using StoreParser.Services.TimerBackgroundWorker;
 
 namespace StoreParser.Controllers
 {
+
+    //todo: debug cancellation token bug, when Admin action starts. 
     public class AdminController : Controller
     {
         TimedHostedService timedHostedService;

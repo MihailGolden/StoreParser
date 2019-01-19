@@ -14,13 +14,7 @@ namespace StoreParser.Parser.ProDJShopParser
         readonly HttpClient client;
         readonly string url;
 
-        public ProDjShopProductParser(IParserSettings settings)
-        {
-            client = new HttpClient();
-            url = $"{settings.BaseUrl}/{settings.Prefix}";
-        }
 
-        ProDjShopProductParser
         public Product Parse(IHtmlDocument document)
         {
             throw new NotImplementedException();

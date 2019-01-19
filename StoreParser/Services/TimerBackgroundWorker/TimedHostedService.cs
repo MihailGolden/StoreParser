@@ -46,7 +46,7 @@ namespace StoreParser.Services.TimerBackgroundWorker
         public Task StartAsync(CancellationToken cancellationToken)
         {
 
-            _logger.LogInformation("Timed Background Service is starting.");
+            _logger.LogDebug("Timed Background Service is starting.");
 
             _timer = new Timer(DoWork, cancellationToken, TimeSpan.Zero,
                 TimeSpan.FromSeconds(period));
@@ -58,7 +58,7 @@ namespace StoreParser.Services.TimerBackgroundWorker
         {
             ProDjShopParser parser = new ProDjShopParser();
             List<string> strings = new List<string>();
-            ProDjShopParserSettings parserSettings = new ProDjShopParserSettings(1, 3);
+            ProDjShopParserSettings parserSettings = new ProDjShopParserSettings(1, 2);
             ParserWorker<string[]> worker = new ParserWorker<string[]>(parser, parserSettings);
             worker.Settings = parserSettings;
             worker.Start();
@@ -67,10 +67,18 @@ namespace StoreParser.Services.TimerBackgroundWorker
                 int counter = 1;
                 foreach (var header in x)
                 {
-                    db.Links.Add(new Link { Url = header });
+                    var productsDb = db.Products;
+                    if(db.Products.Any(p => p.Url == header))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        db.Products.Add(new Product { Url = header, Prices = null, Images = null });
+                    }
                     db.SaveChanges();
-                    counter++;
-                    _logger.LogInformation(header);
+                    
+                    _logger.LogInformation(header + " --- " + (counter++.ToString()));
 
                 }
 
@@ -78,12 +86,12 @@ namespace StoreParser.Services.TimerBackgroundWorker
                 //await context.Response.WriteAsync(x.Count().ToString());
             };
 
-            _logger.LogInformation("Timed Background Service is working." + (_counter++.ToString()));
+            _logger.LogDebug("Timed Background Service is working." + (_counter++.ToString()));
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Timed Background Service is stopping.");
+            _logger.LogDebug("Timed Background Service is stopping.");
 
             _timer?.Change(Timeout.Infinite, 0);
 

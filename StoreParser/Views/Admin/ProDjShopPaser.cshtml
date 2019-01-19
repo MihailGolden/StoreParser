@@ -3,8 +3,10 @@
 }
 <div class="container container-fluid">
     <h1 class="page-header">ProDjShopPaser</h1>
-    <hr />
 
+    <h3>This parser handles the following link</h3>
+    <a href="https://www.prodj.com.ua/studio-monitors/">https://www.prodj.com.ua/studio-monitors/</a>
+    <hr />
     <div class="container">
         <div class="row">
             <a asp-controller="Admin" asp-action="StartParse">
@@ -16,7 +18,7 @@
         </div>
         <div>
             <h3>
-                Status of parser is:
+                Parser status is:
                 <span class="label label-primary">@ViewData["TimerStatus"]</span>
             </h3>
         </div>
