@@ -7,7 +7,18 @@ using System.Threading.Tasks;
 namespace StoreParser.Parser.ProDjShopUrlCollector
 {
     public class ProDjShopProductParserSettings : IProductParserSettings
-    { 
+    {
+        public ProDjShopProductParserSettings() { }
+
+        //public ProDjShopProductParserSettings(string PricePattern, string PriceAttributeKey,
+        //    string HeaderPattern, string DescriptionPattern, string ImagePattern)
+        //{
+        //    PricePattern
+        //        PriceAttributeKey
+        //        HeaderPattern
+        //        DescriptionPattern
+        //        ImagePattern
+        //}
         //public ProDjShopProductParserSettings()
         //{
         //    //Url = url;
@@ -21,5 +32,6 @@ namespace StoreParser.Parser.ProDjShopUrlCollector
         public string HeaderPattern { get; set; } = "div.tov-h1 h1";
         public string DescriptionPattern { get; set; } = "div.tov-text1.lnk1";
         public string ImagePattern { get; set; } = "img.mfp-img";
+        public string Url { get; set; } = "link[rel=canonical]";
     }
 }

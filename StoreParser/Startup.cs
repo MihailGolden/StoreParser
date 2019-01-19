@@ -61,6 +61,7 @@ namespace StoreParser
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(/*ParserScheduler timer, */IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env, ILoggerFactory loggerFactory /*IUrlCollector<string[]> collector, */)
         {
+
             loggerFactory.AddConsole();
 
             if (env.IsDevelopment())

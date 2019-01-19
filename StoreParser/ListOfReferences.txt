@@ -8,3 +8,34 @@ Timer - https://docs.microsoft.com/en-us/dotnet/api/system.threading.timer?view=
 How to save the image to database and render it in ASP.NET Core - https://code.msdn.microsoft.com/How-to-save-Image-to-978a7b0b#content
 
 Serialize Entity Framework objects into JSON - https://stackoverflow.com/questions/657939/serialize-entity-framework-objects-into-json
+
+Encoding - https://docs.microsoft.com/ru-ru/dotnet/standard/base-types/character-encoding
+- https://stackoverflow.com/questions/227575/encoding-trouble-with-httpwebresponse
+- https://2cyr.com/decode/?lang=ru
+
+            //byte[] encodeString = Encoding.GetEncoding(1251).GetBytes(source);
+            //source = Encoding.Default.GetString(encodeString);
+
+
+My not useful recursion method. Because Anglesharp recursively gets the text content of an element.
+
+        //private void GetDescription(IElement desc, ref string res)
+        //{
+        //    if (!String.IsNullOrWhiteSpace(desc.TextContent))
+        //    {
+        //        res += desc.TextContent;
+        //    }
+
+        //    //int childCount = desc.ChildElementCount;
+        //    //if (childCount > 0)
+        //    //{
+        //    //    for (int i = 1; i < childCount; i++)
+        //    //    {
+        //    //        GetDescription(desc.Children[i], ref res);
+        //    //    }
+        //    //}
+        //    //else
+        //    //{
+        //    //    return;
+        //    //}
+        //}

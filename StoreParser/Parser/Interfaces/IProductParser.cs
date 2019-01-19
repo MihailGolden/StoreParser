@@ -8,6 +8,6 @@ namespace StoreParser.Parser.Interfaces
 {
     interface IProductParser<T> where T : class
     {
-        T Parse(IHtmlDocument document);
+        Task<T> Parse(string source);
     }
 }
