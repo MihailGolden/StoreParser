@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 using StoreParser.Models;
 using StoreParser.Parser;
 using StoreParser.Parser.Interfaces;
-using StoreParser.Parser.ProDJShopParser;
+using StoreParser.Parser.ProDjShopUrlCollector;
 using StoreParser.Services.TimerBackgroundWorker;
 
 namespace StoreParser
@@ -47,19 +47,19 @@ namespace StoreParser
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //services.AddSingleton<IParser<string[]>, ProDjShopParser>();
+            //services.AddSingleton<IUrlCollector<string[]>, ProDjShopUrlCollector>();
 
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             //background timer for parsing
-            //services.AddSingleton<IHostedService, TimedHostedService>();
-            services.AddSingleton<TimedHostedService>();
+            //services.AddSingleton<IHostedService, ParserScheduler>();
+            services.AddSingleton<ParserScheduler>();
             return services.BuildServiceProvider();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(/*TimedHostedService timer, */IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env, ILoggerFactory loggerFactory /*IParser<string[]> parser, */)
+        public void Configure(/*ParserScheduler timer, */IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env, ILoggerFactory loggerFactory /*IUrlCollector<string[]> collector, */)
         {
             loggerFactory.AddConsole();
 
@@ -95,11 +95,11 @@ namespace StoreParser
 
             //    var logger = loggerFactory.CreateLogger("RequestInfoLogger");
 
-            //    //    ProDjShopParser parser = new ProDjShopParser();
+            //    //    ProDjShopUrlCollector collector = new ProDjShopUrlCollector();
             //    //    List<string> strings = new List<string>();
-            //    //    ProDjShopParserSettings parserSettings = new ProDjShopParserSettings(1, 3);
-            //    //    ParserWorker<string[]> worker = new ParserWorker<string[]>(parser, parserSettings);
-            //    //    worker.Settings = parserSettings;
+            //    //    ProDjShopUrlCollectorSettings collectorSettings = new ProDjShopUrlCollectorSettings(1, 3);
+            //    //    UrlCollectorWorker<string[]> worker = new UrlCollectorWorker<string[]>(collector, collectorSettings);
+            //    //    worker.Settings = collectorSettings;
             //    //    worker.Start();
             //    //    worker.OnNewData += async (t, x) =>
             //    //    {

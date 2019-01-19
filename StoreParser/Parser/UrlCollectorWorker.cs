@@ -7,39 +7,39 @@ using System.Threading.Tasks;
 
 namespace StoreParser.Parser
 {
-    class ParserWorker<T> where T : class
+    class UrlCollectorWorker<T> where T : class
     {
-        IParser<T> parser;
-        IParserSettings parserSettings;
+        IUrlCollector<T> collector;
+        IUrlCollectorSettings collectorSettings;
 
-        HtmlLoader loader;
+        UrlCollectLoader loader;
 
         bool isActive;
 
         #region Properties
 
-        public IParser<T> Parser
+        public IUrlCollector<T> Collector
         {
             get
             {
-                return parser;
+                return collector;
             }
             set
             {
-                parser = value;
+                collector = value;
             }
         }
 
-        public IParserSettings Settings
+        public IUrlCollectorSettings Settings
         {
             get
             {
-                return parserSettings;
+                return collectorSettings;
             }
             set
             {
-                parserSettings = value;
-                loader = new HtmlLoader(value);
+                collectorSettings = value;
+                loader = new UrlCollectLoader(value);
             }
         }
 
@@ -56,14 +56,14 @@ namespace StoreParser.Parser
         public event Action<object, T> OnNewData;
         public event Action<object> OnCompleted;
 
-        public ParserWorker(IParser<T> parser)
+        public UrlCollectorWorker(IUrlCollector<T> collector)
         {
-            this.parser = parser;
+            this.collector = collector;
         }
 
-        public ParserWorker(IParser<T> parser, IParserSettings parserSettings) : this(parser)
+        public UrlCollectorWorker(IUrlCollector<T> collector, IUrlCollectorSettings collectorSettings) : this(collector)
         {
-            this.parserSettings = parserSettings;
+            this.collectorSettings = collectorSettings;
         }
 
         public void Start()
@@ -79,7 +79,7 @@ namespace StoreParser.Parser
 
         private async void Worker()
         {
-            for (int i = parserSettings.StartPoint; i <= parserSettings.EndPoint; i++)
+            for (int i = collectorSettings.StartPoint; i <= collectorSettings.EndPoint; i++)
             {
                 if (!isActive)
                 {
@@ -92,7 +92,7 @@ namespace StoreParser.Parser
 
                 var document = await domParser.ParseAsync(source);
 
-                var result = parser.Parse(document);
+                var result = collector.Collect(document);
 
                 OnNewData?.Invoke(this, result);
             }

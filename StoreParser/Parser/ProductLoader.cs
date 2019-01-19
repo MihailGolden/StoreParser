@@ -1,4 +1,4 @@
-﻿using StoreParser.Parser.Interfaces;
+﻿using StoreParser.Parser.ProDjShopUrlCollector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +8,18 @@ using System.Threading.Tasks;
 
 namespace StoreParser.Parser
 {
-    class HtmlLoader
+    public class ProductLoader
     {
         readonly HttpClient client;
-        readonly string url;
 
-        public HtmlLoader(IParserSettings settings)
+        public ProductLoader()
         {
             client = new HttpClient();
-            url = $"{settings.BaseUrl}/{settings.Prefix}";
         }
 
-        public async Task<string> GetSourceByPageId(int id)
+        public async Task<string> Load(string url)
         {
-            var currentUrl = url.Replace("{CurrentId}", id.ToString());
-            var response = await client.GetAsync(currentUrl);
+            var response = await client.GetAsync(url);
             string source = null;
 
             if (response != null && response.StatusCode == HttpStatusCode.OK)

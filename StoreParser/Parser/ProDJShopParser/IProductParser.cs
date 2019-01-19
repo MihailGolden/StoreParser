@@ -1,4 +1,4 @@
-﻿namespace StoreParser.Parser.ProDJShopParser
+﻿namespace StoreParser.Parser.ProDjShopUrlCollector
 {
     public interface IProductParser
     {

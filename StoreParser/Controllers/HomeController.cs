@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using StoreParser.Models;
 using Microsoft.EntityFrameworkCore;
 using StoreParser.Parser;
-using StoreParser.Parser.ProDJShopParser;
+using StoreParser.Parser.ProDjShopUrlCollector;
 
 namespace StoreParser.Controllers
 {
     public class HomeController : Controller
     {
         StoreContext db;
-        ParserWorker<string[]> parser;
+        UrlCollectorWorker<string[]> collector;
 
         public HomeController(StoreContext context)
         {

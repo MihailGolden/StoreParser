@@ -5,18 +5,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StoreParser.Parser.ProDJShopParser
+namespace StoreParser.Parser.ProDjShopUrlCollector
 {
-    class ProDjShopParser : IParser<string[]>
+    class ProDjShopUrlCollector : IUrlCollector<string[]>
     {
-        //IParser<string[]> _parser;
+        //IUrlCollector<string[]> _collector;
 
-        //public ProDjShopParser(IParser<string[]> parser)
+        //public ProDjShopUrlCollector(IUrlCollector<string[]> collector)
         //{
-        //    _parser = parser;
+        //    _collector = collector;
         //}
 
-        public string[] Parse(IHtmlDocument document)
+        public string[] Collect(IHtmlDocument document)
         {
             var list = new List<string>();
             var items = document.QuerySelectorAll("span.bt-name a");

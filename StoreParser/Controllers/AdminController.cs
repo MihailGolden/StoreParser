@@ -12,36 +12,36 @@ namespace StoreParser.Controllers
     //todo: debug cancellation token bug, when Admin action starts. 
     public class AdminController : Controller
     {
-        TimedHostedService timedHostedService;
+        ParserScheduler parserScheduler;
 
         CancellationTokenSource cts = new CancellationTokenSource();
         CancellationToken token;
 
-        public AdminController(TimedHostedService ths)
+        public AdminController(ParserScheduler scheduler)
         {
-            timedHostedService = ths;
+            parserScheduler = scheduler;
             token = cts.Token;
 
         }
 
         public ActionResult ProDjShopPaser()
         {
-            ViewData["TimerStatus"] = timedHostedService.timerState;
+            ViewData["TimerStatus"] = parserScheduler.timerState;
             return View();
         }
 
         public async Task<ActionResult> StartParse()
         {
-            await timedHostedService.StartAsync(token);
-            ViewData["TimerStatus"] = timedHostedService.timerState;
+            await parserScheduler.StartAsync(token);
+            ViewData["TimerStatus"] = parserScheduler.timerState;
             return View("ProDjShopPaser");
         }
 
         public async Task<ActionResult> StopParse()
         {
             cts.Cancel();
-            await timedHostedService.StopAsync(token);
-            ViewData["TimerStatus"] = timedHostedService.timerState;
+            await parserScheduler.StopAsync(token);
+            ViewData["TimerStatus"] = parserScheduler.timerState;
             return View("ProDjShopPaser");
         }
     }

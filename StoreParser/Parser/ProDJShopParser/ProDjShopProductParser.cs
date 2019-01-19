@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace StoreParser.Parser.ProDJShopParser
+namespace StoreParser.Parser.ProDjShopUrlCollector
 {
     public class ProDjShopProductParser : IProductParser<Product>
     {

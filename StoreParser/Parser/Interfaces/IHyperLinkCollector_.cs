@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace StoreParser.Parser.Interfaces
 {
-    class IHyperLinkCollector
+    class IHyperLinkCollector_
     {
 
         private List<string> Links;
         private string pattern;
         private string BaseHyperLink;
 
-        IHyperLinkCollector(string QuerySelectorPattern) { }
+        IHyperLinkCollector_(string QuerySelectorPattern) { }
 
         //void CollectHyperLinks();
     }

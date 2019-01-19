@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StoreParser.Parser.ProDJShopParser
+namespace StoreParser.Parser.ProDjShopUrlCollector
 {
-    class ProDjShopParserSettings : IParserSettings
+    class ProDjShopUrlCollectorSettings : IUrlCollectorSettings
     {
-        public ProDjShopParserSettings(int start, int end)
+        public ProDjShopUrlCollectorSettings(int start, int end)
         {
             StartPoint = start;
             EndPoint = end;

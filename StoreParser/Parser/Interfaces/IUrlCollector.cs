@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace StoreParser.Parser.Interfaces
 {
-    public interface IParser<T> where T : class
+    public interface IUrlCollector<T> where T : class
     {
-        T Parse(IHtmlDocument document);
+        T Collect(IHtmlDocument document);
     }
 }

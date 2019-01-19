@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using StoreParser.Models;
 using StoreParser.Parser;
-using StoreParser.Parser.ProDJShopParser;
+using StoreParser.Parser.ProDjShopUrlCollector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace StoreParser.Services.TimerBackgroundWorker
     //
     // Summary:
     //     Timer for running background task.
-    public class TimedHostedService : IHostedService
+    public class ParserScheduler : IHostedService
     {
         //
         // Summary:
@@ -35,7 +35,7 @@ namespace StoreParser.Services.TimerBackgroundWorker
         private readonly CancellationTokenSource _stoppingCts =
                                                    new CancellationTokenSource();
 
-        public TimedHostedService(ILogger<TimedHostedService> logger, StoreContext dbContext)
+        public ParserScheduler(ILogger<ParserScheduler> logger, StoreContext dbContext)
         {
             _counter = 0;
             _logger = logger;
@@ -56,11 +56,11 @@ namespace StoreParser.Services.TimerBackgroundWorker
 
         private void DoWork(object state)
         {
-            ProDjShopParser parser = new ProDjShopParser();
+            ProDjShopUrlCollector collector = new ProDjShopUrlCollector();
             List<string> strings = new List<string>();
-            ProDjShopParserSettings parserSettings = new ProDjShopParserSettings(1, 2);
-            ParserWorker<string[]> worker = new ParserWorker<string[]>(parser, parserSettings);
-            worker.Settings = parserSettings;
+            ProDjShopUrlCollectorSettings collectorSettings = new ProDjShopUrlCollectorSettings(1, 2);
+            UrlCollectorWorker<string[]> worker = new UrlCollectorWorker<string[]>(collector, collectorSettings);
+            worker.Settings = collectorSettings;
             worker.Start();
             worker.OnNewData += async (t, x) =>
             {

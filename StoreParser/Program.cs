@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using StoreParser.Models;
 using StoreParser.Parser;
-using StoreParser.Parser.ProDJShopParser;
+using StoreParser.Parser.ProDjShopUrlCollector;
 using Microsoft.AspNetCore.Http;
 using System.Threading;
 using StoreParser.Parser.Interfaces;
@@ -22,18 +22,18 @@ namespace StoreParser
 
         public static void Main(string[] args)
         {
-            ////parser
+            ////collector
             //List<string> strings = new List<string>();
 
-            //ProDjShopParser parser = new ProDjShopParser();
-            //ProDjShopParserSettings parserSettings = new ProDjShopParserSettings(1, 3);
+            //ProDjShopUrlCollector collector = new ProDjShopUrlCollector();
+            //ProDjShopUrlCollectorSettings collectorSettings = new ProDjShopUrlCollectorSettings(1, 3);
 
-            //ParserWorker<string[]> worker = new ParserWorker<string[]>(parser, parserSettings);
-            //worker.Settings = parserSettings;
+            //UrlCollectorWorker<string[]> worker = new UrlCollectorWorker<string[]>(collector, collectorSettings);
+            //worker.Settings = collectorSettings;
             //worker.Start();
             //worker.OnNewData += (t, x) => strings.AddRange(x);
 
-            /////parser
+            /////collector
 
             var host = CreateWebHostBuilder(args).Build();
 

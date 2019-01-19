@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StoreParser.Parser.ProDJShopParser
+namespace StoreParser.Parser.ProDjShopUrlCollector
 {
     public class ProDjShopProductParserSettings : IProductParserSettings
     { 
