@@ -28,6 +28,14 @@ namespace StoreParser.Controllers
             return View(products);
         }
 
+        
+        public async Task<ActionResult> GetProduct(int id)
+        {
+            Product product = db.Products.Where(p => p.Id == id).FirstOrDefault();
+            return View(product);
+        }
+
+
         public async Task<JsonResult> Test()
         {
 

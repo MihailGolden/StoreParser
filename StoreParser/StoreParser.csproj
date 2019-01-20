@@ -11,12 +11,14 @@
 
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="0.9.9" />
+    <PackageReference Include="bootstrap" Version="4.2.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNet.WebUtilities" Version="1.0.0-rc1-final" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="popper.js" Version="1.14.3" />
   </ItemGroup>
 
   <ItemGroup>

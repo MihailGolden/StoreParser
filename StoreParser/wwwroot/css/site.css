@@ -3,6 +3,7 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color:#040923
 }
 
 /* Wrapping element */
@@ -34,4 +35,24 @@ body {
     .carousel-caption {
         display: none;
     }
+}
+.card {
+    border: solid #48217a 2px;
+    border-radius: 5px;
+    background-color: white;
+    margin: 10px;
+    height: 450px;
+    padding: 20px;
+    overflow: auto;
+    box-sizing: padding-box;
+}
+.link{
+    color:blue;
+}
+.header-light{
+    color:aliceblue;
+}
+.product-description{
+    background-color:aliceblue;
+    margin-top:200px;
 }
