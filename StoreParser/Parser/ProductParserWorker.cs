@@ -24,24 +24,30 @@ namespace StoreParser.Parser
         private ProDjShopProductParserSettings settings;
         private ProDjShopProductParser parser;
         private ProDjShopDbSaver saver;
+        private StoreContext db;
 
-        public ProductParserWorker()
+        public ProductParserWorker(StoreContext dbContext)
         {
             productLoader = new ProductLoader();
             settings = new ProDjShopProductParserSettings();
             parser = new ProDjShopProductParser(settings);
-            saver = new ProDjShopDbSaver();
+            db = dbContext;
+            saver = new ProDjShopDbSaver(db);
         }
 
         public async void DoWork(object obj, string[] urls)
         {
+            List<Product> productList = new List<Product>();
             foreach (string url in urls)
             {
                 string source = await productLoader.Load(settings.Prefix + url);
                 var product = await parser.Parse(source);
-                if (product != null)
-
+                if(product != null)
+                {
+                    productList.Add(product);
+                }
             }
+            await saver.SaveProducts(productList);
         }
     }
 }

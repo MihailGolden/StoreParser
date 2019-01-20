@@ -62,7 +62,7 @@ namespace StoreParser.Services.TimerBackgroundWorker
             UrlCollectorWorker<string[]> worker = new UrlCollectorWorker<string[]>(collector, collectorSettings);
             worker.Settings = collectorSettings;
             worker.Start();
-            ProductParserWorker productParserWorker = new ProductParserWorker();
+            ProductParserWorker productParserWorker = new ProductParserWorker(db);
             worker.OnNewData += productParserWorker.DoWork;
             //worker.OnNewData += async (t, x) =>
             //{

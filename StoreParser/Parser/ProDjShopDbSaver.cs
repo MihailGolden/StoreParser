@@ -31,8 +31,9 @@ namespace StoreParser.Parser
                 else
                 {
                     db.Products.Add(product);
+                    db.SaveChanges();
+
                 }
-                db.SaveChanges();
             }
         }
     }
