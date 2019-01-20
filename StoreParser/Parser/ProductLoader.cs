@@ -35,6 +35,7 @@ namespace StoreParser.Parser
                 }
             }
 
+            return source;
 
 
             //var response = await client.GetAsync(url);
@@ -50,7 +51,6 @@ namespace StoreParser.Parser
             //source = Encoding.Default.GetString(encodeString);
 
 
-            return source;
         }
     }
 }

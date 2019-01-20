@@ -25,7 +25,7 @@ namespace StoreParser.Services.TimerBackgroundWorker
         //
         // Summary:
         //     Get or set time interval for doig task.
-        public int period { get; set; } = 15;
+        public int period { get; set; } = 15; //seconds
 
         private StoreContext db;
 
@@ -62,29 +62,31 @@ namespace StoreParser.Services.TimerBackgroundWorker
             UrlCollectorWorker<string[]> worker = new UrlCollectorWorker<string[]>(collector, collectorSettings);
             worker.Settings = collectorSettings;
             worker.Start();
-            worker.OnNewData += async (t, x) =>
-            {
-                int counter = 1;
-                foreach (var header in x)
-                {
-                    var productsDb = db.Products;
-                    if(db.Products.Any(p => p.Url == header))
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        db.Products.Add(new Product { Url = header, Prices = null, Images = null });
-                    }
-                    db.SaveChanges();
-                    
-                    _logger.LogInformation(header + " --- " + (counter++.ToString()));
+            ProductParserWorker productParserWorker = new ProductParserWorker();
+            worker.OnNewData += productParserWorker.DoWork;
+            //worker.OnNewData += async (t, x) =>
+            //{
+            //    int counter = 1;
+            //    foreach (var header in x)
+            //    {
+            //        var productsDb = db.Products;
+            //        if(db.Products.Any(p => p.Url == header))
+            //        {
+            //            continue;
+            //        }
+            //        else
+            //        {
+            //            db.Products.Add(new Product { Url = header, Prices = null, Images = null });
+            //        }
+            //        db.SaveChanges();
 
-                }
+            //        _logger.LogInformation(header + " --- " + (counter++.ToString()));
 
-                //strings.AddRange(x);
-                //await context.Response.WriteAsync(x.Count().ToString());
-            };
+            //    }
+
+            //    //strings.AddRange(x);
+            //    //await context.Response.WriteAsync(x.Count().ToString());
+            //};
 
             _logger.LogDebug("Timed Background Service is working." + (_counter++.ToString()));
         }

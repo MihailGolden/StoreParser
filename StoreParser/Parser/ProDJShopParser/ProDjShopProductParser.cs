@@ -39,14 +39,27 @@ namespace StoreParser.Parser.ProDjShopUrlCollector
             bool isPrice = Decimal.TryParse((priceRaw.Attributes[settings.PriceAttributeKey].Value), out price);
             url = (document.QuerySelectorAll(settings.Url).FirstOrDefault()).Attributes["href"].Value;
             description = document.QuerySelectorAll(settings.DescriptionPattern).FirstOrDefault().TextContent;
+            description = description.Trim().Replace('\n', ' ');
 
-            if (true /*!String.IsNullOrWhiteSpace(header) && price > 0 && !String.IsNullOrWhiteSpace(url)*/)
+            string[] imagesUrls = document.QuerySelectorAll(settings.ImagePattern).Select(i => i.Attributes["href"].Value).ToArray();
+
+            ImageDownloader imageDownloader = new ImageDownloader();
+
+            List<Image> imageList = new List<Image>();
+            foreach (string imagesUrl in imagesUrls)
+            {
+                Image image = await imageDownloader.DownloadImageAsync(imagesUrl);
+                imageList.Add(image);
+            }
+
+            if (!String.IsNullOrWhiteSpace(header) && price > 0 && !String.IsNullOrWhiteSpace(url))
             {
                 Product product = new Product()
                 {
                     Url = url,
                     Name = header,
                     Description = description,
+                    Images = imageList,
                     Prices = new List<Price>()
                     {
                         new Price() { ProductPrice = price, PriceLastDate = DateTime.Now }
