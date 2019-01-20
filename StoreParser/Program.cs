@@ -22,19 +22,6 @@ namespace StoreParser
 
         public static void Main(string[] args)
         {
-            ////collector
-            //List<string> strings = new List<string>();
-
-            //ProDjShopUrlCollector collector = new ProDjShopUrlCollector();
-            //ProDjShopUrlCollectorSettings collectorSettings = new ProDjShopUrlCollectorSettings(1, 3);
-
-            //UrlCollectorWorker<string[]> worker = new UrlCollectorWorker<string[]>(collector, collectorSettings);
-            //worker.Settings = collectorSettings;
-            //worker.Start();
-            //worker.OnNewData += (t, x) => strings.AddRange(x);
-
-            /////collector
-
             var host = CreateWebHostBuilder(args).Build();
 
             using (var scope = host.Services.CreateScope())

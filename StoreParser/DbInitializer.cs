@@ -15,10 +15,10 @@ namespace StoreParser
             //    context.Products.AddRange(
             //        new Product
             //        {
-            //            Name = "iPhone 6S",
+            //            Name = "Test",
             //            Description = "Description",
             //            Images = new List<Image>(),
-            //            Prices = 
+            //            Prices =
             //                    new List<Price>()
             //                    {
             //                        new Price(){ ProductPrice = 400m, PriceLastDate = DateTime.Now }

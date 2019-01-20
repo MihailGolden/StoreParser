@@ -40,17 +40,27 @@ namespace StoreParser.Parser
 
         public async void DoWork(object obj, string[] urls)
         {
-            List<Product> productList = new List<Product>();
-            foreach (string url in urls)
-            {
-                string source = await productLoader.Load(settings.Prefix + url);
-                var product = await parser.Parse(source);
-                if(product != null)
+            //try
+            //{
+                List<Product> productList = new List<Product>();
+                foreach (string url in urls)
                 {
-                    productList.Add(product);
+                    
+                    string source = await productLoader.Load(settings.Prefix + url);
+
+                    Product product = await parser.Parse(source);
+
+                    if (product.Name != null)
+                    {
+                        productList.Add(product);
+                    }
                 }
-            }
-            await saver.SaveProducts(productList);
+                saver.SaveProducts(productList);
+            //}
+            //catch(Exception e)
+            //{
+
+            //}
         }
     }
 }

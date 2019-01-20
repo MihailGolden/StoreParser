@@ -6,7 +6,19 @@
 <hr />
 
 
-<h2 class="header-light text-center">List of products</h2>
+<h2 class="header-light text-center">List of products - <span class="alert-warning">@Model.Count() products in DB</span></h2>
+
+@if (Model.Count() < 1)
+{
+    <h3 class="alert-danger">If you see this message, then the database has no data.</h3>
+    <h3>Please go to the "Admin" menu item and click the "Start" button to start the scheduler</h3>
+    <h4>Sheduler parses the site once a day. Good luck ;)</h4>
+    <p>
+        Info: you can change the interval of parsing in the StoreParser.Services.TimerBackgroundWorker.ParserScheduler class
+        - period variable
+    </p>
+
+}
 
 <div class="container">
     <div ">

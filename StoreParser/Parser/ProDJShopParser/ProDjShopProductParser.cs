@@ -29,19 +29,17 @@ namespace StoreParser.Parser.ProDjShopUrlCollector
             //var result = collector.Collect(document);
 
 
-            string header = null;
-            decimal price = 0;
-            string url = null;
-            string description = null;
-
-            header = document.QuerySelectorAll(settings.HeaderPattern).FirstOrDefault().TextContent.ToString();
-            var priceRaw = document.QuerySelectorAll(settings.PricePattern).FirstOrDefault();
-            bool isPrice = Decimal.TryParse((priceRaw.Attributes[settings.PriceAttributeKey].Value), out price);
-            url = (document.QuerySelectorAll(settings.Url).FirstOrDefault()).Attributes["href"].Value;
-            description = document.QuerySelectorAll(settings.DescriptionPattern).FirstOrDefault().TextContent;
+         
+         
+            string header = await Task.Run(() => document.QuerySelectorAll(settings.HeaderPattern).FirstOrDefault().TextContent.ToString());
+            string priceRaw = await Task.Run(() => (document.QuerySelectorAll(settings.PricePattern)?.FirstOrDefault()?.Attributes["data-p"]?.Value));
+            //var p = priceRaw.Attributes[settings.PriceAttributeKey].Value;
+            decimal price = priceRaw != null ? Decimal.Parse(priceRaw): 0m;
+            string url = await Task.Run(() => (document.QuerySelectorAll(settings.Url).FirstOrDefault()).Attributes["href"].Value);
+            string description = await Task.Run(() => document.QuerySelectorAll(settings.DescriptionPattern).FirstOrDefault().TextContent);
             description = description.Trim().Replace('\n', ' ');
 
-            string[] imagesUrls = document.QuerySelectorAll(settings.ImagePattern).Select(i => i.Attributes["href"].Value).ToArray();
+            string[] imagesUrls = await Task.Run(() => document.QuerySelectorAll(settings.ImagePattern).Select(i => i.Attributes["href"].Value).ToArray());
 
             ImageDownloader imageDownloader = new ImageDownloader();
 
@@ -65,9 +63,9 @@ namespace StoreParser.Parser.ProDjShopUrlCollector
                         new Price() { ProductPrice = price, PriceLastDate = DateTime.Now }
                     }
                 };
-                return product;
+                return  product;
             }
-            return null;
+            return new Product();
         }
     }
 }

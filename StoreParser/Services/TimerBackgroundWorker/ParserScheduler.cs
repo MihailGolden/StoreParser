@@ -58,7 +58,8 @@ namespace StoreParser.Services.TimerBackgroundWorker
         {
             ProDjShopUrlCollector collector = new ProDjShopUrlCollector();
             List<string> strings = new List<string>();
-            ProDjShopUrlCollectorSettings collectorSettings = new ProDjShopUrlCollectorSettings(1, 2);
+            
+            ProDjShopUrlCollectorSettings collectorSettings = new ProDjShopUrlCollectorSettings();
             UrlCollectorWorker<string[]> worker = new UrlCollectorWorker<string[]>(collector, collectorSettings);
             worker.Settings = collectorSettings;
             worker.Start();
