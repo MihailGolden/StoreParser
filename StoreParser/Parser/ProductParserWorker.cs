@@ -1,6 +1,8 @@
-﻿using StoreParser.Models;
+﻿using Microsoft.Extensions.Logging;
+using StoreParser.Models;
 using StoreParser.Parser.Interfaces;
 using StoreParser.Parser.ProDjShopUrlCollector;
+using StoreParser.Services.TimerBackgroundWorker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +25,7 @@ namespace StoreParser.Parser
         private ProductLoader productLoader;
         private ProDjShopProductParserSettings settings;
         private ProDjShopProductParser parser;
-        private ProDjShopDbSaver saver;
+        private ProductDbSaver saver;
         private StoreContext db;
 
         public ProductParserWorker(StoreContext dbContext)
@@ -32,7 +34,8 @@ namespace StoreParser.Parser
             settings = new ProDjShopProductParserSettings();
             parser = new ProDjShopProductParser(settings);
             db = dbContext;
-            saver = new ProDjShopDbSaver(db);
+
+            saver = new ProductDbSaver(db);
         }
 
         public async void DoWork(object obj, string[] urls)

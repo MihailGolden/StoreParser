@@ -25,7 +25,7 @@ namespace StoreParser.Services.TimerBackgroundWorker
         //
         // Summary:
         //     Get or set time interval for doig task.
-        public int period { get; set; } = 15; //seconds
+        public int period { get; set; } = 60*60*24; //seconds = per a day
 
         private StoreContext db;
 

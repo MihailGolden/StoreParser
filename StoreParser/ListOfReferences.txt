@@ -13,8 +13,14 @@ Encoding - https://docs.microsoft.com/ru-ru/dotnet/standard/base-types/character
 - https://stackoverflow.com/questions/227575/encoding-trouble-with-httpwebresponse
 - https://2cyr.com/decode/?lang=ru
 
-            //byte[] encodeString = Encoding.GetEncoding(1251).GetBytes(source);
-            //source = Encoding.Default.GetString(encodeString);
+Files downloading - https://stackoverflow.com/questions/41337487/how-to-download-image-from-url-and-save-it-to-a-local-sqlite-database
+           
+		   
+		      
+Unusual code snippets:
+
+//byte[] encodeString = Encoding.GetEncoding(1251).GetBytes(source);
+//source = Encoding.Default.GetString(encodeString);
 
 
 My not useful recursion method. Because Anglesharp recursively gets the text content of an element.

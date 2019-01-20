@@ -23,22 +23,45 @@ namespace StoreParser.Controllers
             db = context;
         }
 
+        //public async Task<ActionResult> Index()
+        //{
+        //    var products = db.Products.ToList();
+        //    return View(products);
+        //}
+
         public async Task<JsonResult> Index()
         {
-            ProductLoader pl = new ProductLoader();
-            ProDjShopProductParser parser = new ProDjShopProductParser(new ProDjShopProductParserSettings());
-            string url = "https://www.prodj.com.ua/studio-monitors/monkey-banana-turbo-4-black";
-            string source = await pl.Load(url);
-            Product product = await parser.Parse(source);
+            //ProductLoader pl = new ProductLoader();
+            //ProDjShopProductParser parser = new ProDjShopProductParser(new ProDjShopProductParserSettings());
+            //string url = "https://www.prodj.com.ua/studio-monitors/monkey-banana-turbo-4-black";
+            //string source = await pl.Load(url);
+            //Product product = await parser.Parse(source);
             //var domParser = new HtmlParser();
 
             //var document = await domParser.ParseAsync(source);
 
             //var result = collector.Collect(document);
 
-            return Json(product);
-        }
-        public string GetCulture(string code = "")
+
+            var prods = db.Products.ToList();
+
+        var products = from entity in prods
+                       select new
+                       {
+                           name = entity.Name,
+                           id = entity.Id,
+                           prices =
+                                     from p in entity.Prices
+                                     select new
+                                     {
+                                         price = p.ProductPrice,
+                                         date = p.PriceLastDate
+                                     }
+                       };
+            return Json(products);
+    }
+
+    public string GetCulture(string code = "")
         {
             if (!String.IsNullOrEmpty(code))
             {
