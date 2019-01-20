@@ -16,52 +16,40 @@ namespace StoreParser.Controllers
     public class HomeController : Controller
     {
         StoreContext db;
-        UrlCollectorWorker<string[]> collector;
 
         public HomeController(StoreContext context)
         {
             db = context;
         }
 
-        //public async Task<ActionResult> Index()
-        //{
-        //    var products = db.Products.ToList();
-        //    return View(products);
-        //}
-
-        public async Task<JsonResult> Index()
+        public async Task<ActionResult> Index()
         {
-            //ProductLoader pl = new ProductLoader();
-            //ProDjShopProductParser parser = new ProDjShopProductParser(new ProDjShopProductParserSettings());
-            //string url = "https://www.prodj.com.ua/studio-monitors/monkey-banana-turbo-4-black";
-            //string source = await pl.Load(url);
-            //Product product = await parser.Parse(source);
-            //var domParser = new HtmlParser();
+            var products = db.Products.ToList();
+            return View(products);
+        }
 
-            //var document = await domParser.ParseAsync(source);
-
-            //var result = collector.Collect(document);
-
+        public async Task<JsonResult> Test()
+        {
 
             var prods = db.Products.ToList();
 
-        var products = from entity in prods
-                       select new
-                       {
-                           name = entity.Name,
-                           id = entity.Id,
-                           prices =
-                                     from p in entity.Prices
-                                     select new
-                                     {
-                                         price = p.ProductPrice,
-                                         date = p.PriceLastDate
-                                     }
-                       };
+            var products = from entity in prods
+                           select new
+                           {
+                               name = entity.Name,
+                               id = entity.Id,
+                               prices =
+                                         from p in entity.Prices
+                                         select new
+                                         {
+                                             price = p.ProductPrice,
+                                             date = p.PriceLastDate
+                                         }
+                           };
             return Json(products);
-    }
+        }
 
-    public string GetCulture(string code = "")
+        public string GetCulture(string code = "")
         {
             if (!String.IsNullOrEmpty(code))
             {

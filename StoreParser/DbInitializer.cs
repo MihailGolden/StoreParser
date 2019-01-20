@@ -10,23 +10,23 @@ namespace StoreParser
     {
         public static void Initialize(StoreContext context)
         {
-            if (!context.Products.Any())
-            {
-                context.Products.AddRange(
-                    new Product
-                    {
-                        Name = "iPhone 6S",
-                        Description = "Description",
-                        Images = new List<Image>(),
-                        Prices = 
-                                new List<Price>()
-                                {
-                                    new Price(){ ProductPrice = 400m, PriceLastDate = DateTime.Now }
-                                }
-                    }
-                );
-                context.SaveChanges();
-            }
+            //if (!context.Products.Any())
+            //{
+            //    context.Products.AddRange(
+            //        new Product
+            //        {
+            //            Name = "iPhone 6S",
+            //            Description = "Description",
+            //            Images = new List<Image>(),
+            //            Prices = 
+            //                    new List<Price>()
+            //                    {
+            //                        new Price(){ ProductPrice = 400m, PriceLastDate = DateTime.Now }
+            //                    }
+            //        }
+            //    );
+            //    context.SaveChanges();
+            //}
         }
     }
 }
