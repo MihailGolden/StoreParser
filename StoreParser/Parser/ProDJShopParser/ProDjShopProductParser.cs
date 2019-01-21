@@ -1,13 +1,9 @@
-﻿using AngleSharp.Dom;
-using AngleSharp.Dom.Html;
-using AngleSharp.Parser.Html;
+﻿using AngleSharp.Parser.Html;
 using StoreParser.Models;
 using StoreParser.Parser.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StoreParser.Parser.ProDjShopUrlCollector
@@ -25,15 +21,9 @@ namespace StoreParser.Parser.ProDjShopUrlCollector
             var domParser = new HtmlParser();
 
             var document = await domParser.ParseAsync(source);
-
-            //var result = collector.Collect(document);
-
-
-         
          
             string header = await Task.Run(() => document.QuerySelectorAll(settings.HeaderPattern).FirstOrDefault().TextContent.ToString());
-            string priceRaw = await Task.Run(() => (document.QuerySelectorAll(settings.PricePattern)?.FirstOrDefault()?.Attributes["data-p"]?.Value));
-            //var p = priceRaw.Attributes[settings.PriceAttributeKey].Value;
+            string priceRaw = await Task.Run(() => (document.QuerySelectorAll(settings.PricePattern)?.FirstOrDefault()?.Attributes[settings.PriceAttributeKey]?.Value));
             decimal price = priceRaw != null ? Decimal.Parse(priceRaw): 0m;
             string url = await Task.Run(() => (document.QuerySelectorAll(settings.Url).FirstOrDefault()).Attributes["href"].Value);
             string description = await Task.Run(() => document.QuerySelectorAll(settings.DescriptionPattern).FirstOrDefault().TextContent);

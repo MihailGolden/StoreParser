@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
+using StoreParser.Services.TimerBackgroundWorker;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using StoreParser.Services.TimerBackgroundWorker;
 
 namespace StoreParser.Controllers
 {
-
-    //todo: debug cancellation token bug, when Admin action starts. 
     public class AdminController : Controller
     {
         ParserScheduler parserScheduler;

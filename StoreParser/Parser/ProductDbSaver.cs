@@ -32,8 +32,6 @@ namespace StoreParser.Parser
                     var dbProductDates = dbProduct.Prices.Select(d => d.PriceLastDate);
                     var maxdbProductDate = dbProductDates.Max();
                     var lastDbProductPrice = dbProduct.Prices.Where(d => d.PriceLastDate == maxdbProductDate).FirstOrDefault();
-
-
                     var priceFromParser = product.Prices.FirstOrDefault();
                     if(priceFromParser.ProductPrice != lastDbProductPrice.ProductPrice)
                     {

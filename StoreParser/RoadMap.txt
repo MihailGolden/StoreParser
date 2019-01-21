@@ -1,0 +1,5 @@
+﻿Split the project into projects: DAL, BLL, Presentatoin
+Use patterns: Repository, Unit of work
+Knockout
+Logging, testing...
+

@@ -6,23 +6,22 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
+
 namespace StoreParser.Tests
 {
     public class HomeControllerTests
     {
-        [Fact]
-        public void IndexTest()
-        {
-            //// Arrange
-            //HomeController controller = new HomeController(context);
+        //    [Fact]
+        //    public void IndexTest()
+        //    {
+        //        // Arrange
+        //        HomeController controller = new HomeController();
 
-            //// Act
-            //ViewResult result = controller.Index() as ViewResult;
+        //        // Act
+        //        ViewResult result = controller.Index() as ViewResult;
 
-            //// Assert
-            //Assert.Equal("Hello", result?.ViewData["Message"]);
-            //Assert.NotNull(result);
-            //Assert.Equal("Index", result?.ViewName);
-        }
+        //        // Assert
+
+        //    }
     }
 }

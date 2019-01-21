@@ -8,14 +8,10 @@ namespace StoreParser.Parser.Interfaces
     interface IProductParserSettings
     {
         string Url { get; set; }
-
         string PricePattern { get; set; }
         string PriceAttributeKey { get; set; }
-
         string HeaderPattern { get; set; }
-
         string DescriptionPattern { get; set; }
-
         string ImagePattern { get; set; }
     }
 }

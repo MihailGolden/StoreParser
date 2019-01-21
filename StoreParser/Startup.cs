@@ -22,29 +22,24 @@ namespace StoreParser
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<StoreContext>(options => options.UseSqlServer(connection));
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //services.AddSingleton<IUrlCollector<string[]>, ProDjShopUrlCollector>();
-            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             //background timer for parsing
-            //services.AddSingleton<IHostedService, ParserScheduler>();
             services.AddSingleton<ParserScheduler>();
             return services.BuildServiceProvider();
         }
 
-        public void Configure(/*ParserScheduler timer, */IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env, ILoggerFactory loggerFactory /*IUrlCollector<string[]> collector, */)
+        public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env, ILoggerFactory loggerFactory /*IUrlCollector<string[]> collector, */)
         {
             loggerFactory.AddConsole();
 

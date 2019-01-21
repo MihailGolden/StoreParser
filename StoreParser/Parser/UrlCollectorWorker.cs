@@ -1,9 +1,6 @@
 ﻿using AngleSharp.Parser.Html;
 using StoreParser.Parser.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace StoreParser.Parser
 {

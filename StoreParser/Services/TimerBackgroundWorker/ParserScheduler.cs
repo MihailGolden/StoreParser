@@ -5,10 +5,8 @@ using StoreParser.Parser;
 using StoreParser.Parser.ProDjShopUrlCollector;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 
 namespace StoreParser.Services.TimerBackgroundWorker
@@ -65,29 +63,6 @@ namespace StoreParser.Services.TimerBackgroundWorker
             worker.Start();
             ProductParserWorker productParserWorker = new ProductParserWorker(db);
             worker.OnNewData += productParserWorker.DoWork;
-            //worker.OnNewData += async (t, x) =>
-            //{
-            //    int counter = 1;
-            //    foreach (var header in x)
-            //    {
-            //        var productsDb = db.Products;
-            //        if(db.Products.Any(p => p.Url == header))
-            //        {
-            //            continue;
-            //        }
-            //        else
-            //        {
-            //            db.Products.Add(new Product { Url = header, Prices = null, Images = null });
-            //        }
-            //        db.SaveChanges();
-
-            //        _logger.LogInformation(header + " --- " + (counter++.ToString()));
-
-            //    }
-
-            //    //strings.AddRange(x);
-            //    //await context.Response.WriteAsync(x.Count().ToString());
-            //};
 
             _logger.LogDebug("Timed Background Service is working." + (_counter++.ToString()));
         }

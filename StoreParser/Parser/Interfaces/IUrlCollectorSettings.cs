@@ -8,11 +8,8 @@ namespace StoreParser.Parser.Interfaces
     interface IUrlCollectorSettings
     {
         string BaseUrl { get; set; }
-
         string Prefix { get; set; }
-
         int StartPoint { get; set; }
-
         int EndPoint { get; set; }
     }
 }
