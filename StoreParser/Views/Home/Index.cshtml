@@ -46,6 +46,13 @@
                         <h3>
                             Price:
                         </h3>
+                        @*@foreach (var price in product.Prices)
+                        {
+                            <p>
+                                <span class="label label-danger">@price.ProductPrice </span>
+                                <span>&nbsp; - @price.PriceLastDate</span>
+                            </p>
+                        }*@
                         @{
                             var lastDate = product.Prices.Max(d => d.PriceLastDate);
                             var actualPrice = product.Prices.Where(p => p.PriceLastDate == lastDate).ToList().FirstOrDefault();
