@@ -44,13 +44,14 @@
                             }
                         </div>
                         <h3>
-                            Prices:
+                            Price:
                         </h3>
-                        @foreach (var price in product.Prices)
-                        {
+                        @{
+                            var lastDate = product.Prices.Max(d => d.PriceLastDate);
+                            var actualPrice = product.Prices.Where(p => p.PriceLastDate == lastDate).ToList().FirstOrDefault();
                             <p>
-                                <span class="label label-danger">@price.ProductPrice </span>
-                                <span>&nbsp; - @price.PriceLastDate</span>
+                                <span class="label label-danger">@actualPrice.ProductPrice.ToString() </span>
+                                <span>&nbsp; - @lastDate</span>
                             </p>
                         }
                         <div class="card-body">
