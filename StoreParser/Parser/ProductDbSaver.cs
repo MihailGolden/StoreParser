@@ -25,7 +25,7 @@ namespace StoreParser.Parser
             {
                 var productsDb = db.Products;
 
-                if (db.Products.Any(p => p.Url == product.Url))
+                if (productsDb.Any(p => p.Url == product.Url))
                 {
                     //price analysing and adding new price
                     var dbProduct = db.Products.Where(p => p.Url == product.Url).FirstOrDefault();

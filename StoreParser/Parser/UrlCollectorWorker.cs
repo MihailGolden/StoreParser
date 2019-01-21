@@ -1,6 +1,7 @@
 ﻿using AngleSharp.Parser.Html;
 using StoreParser.Parser.Interfaces;
 using System;
+using System.Threading;
 
 namespace StoreParser.Parser
 {
@@ -90,8 +91,10 @@ namespace StoreParser.Parser
                 var document = await domParser.ParseAsync(source);
 
                 var result = collector.Collect(document);
+                //todo: crutch. async bug must be fixed
 
                 OnNewData?.Invoke(this, result);
+                Thread.Sleep(10000);
             }
 
             OnCompleted?.Invoke(this);

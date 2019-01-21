@@ -36,6 +36,8 @@ namespace StoreParser.Parser
                     productList.Add(product);
                 }
             }
+
+            //todo: critical point. Async bug must be fixed
             await saver.SaveProducts(productList);
         }
     }
