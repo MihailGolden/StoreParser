@@ -31,7 +31,7 @@ namespace StoreParser.Parser
                     }
                 }
             }
-            catch (Exception e)
+            catch 
             {
                 //Handle Exception
                 return null;

@@ -15,13 +15,13 @@ namespace StoreParser.Controllers
             db = context;
         }
 
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             var products = db.Products.ToList();
             return View(products);
         }
         
-        public async Task<ActionResult> GetProduct(int id)
+        public ActionResult GetProduct(int id)
         {
             Product product = db.Products.Where(p => p.Id == id).FirstOrDefault();
             return View(product);
