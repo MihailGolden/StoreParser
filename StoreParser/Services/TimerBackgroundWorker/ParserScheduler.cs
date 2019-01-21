@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using StoreParser.Models;
 using StoreParser.Parser;
-using StoreParser.Parser.ProDjShopUrlCollector;
+using StoreParser.Parser.ProDJShopParser;
 using System;
 using System.Collections.Generic;
 using System.Threading;

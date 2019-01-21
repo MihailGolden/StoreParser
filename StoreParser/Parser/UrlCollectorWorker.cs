@@ -4,7 +4,7 @@ using System;
 
 namespace StoreParser.Parser
 {
-    class UrlCollectorWorker<T> where T : class
+    public class UrlCollectorWorker<T> where T : class
     {
         IUrlCollector<T> collector;
         IUrlCollectorSettings collectorSettings;
@@ -84,7 +84,7 @@ namespace StoreParser.Parser
                     return;
                 }
 
-                var source = await loader.GetSourceByPageId(i);
+                var source = await loader.GetSourceByPageIdAsync(i);
                 var domParser = new HtmlParser();
 
                 var document = await domParser.ParseAsync(source);

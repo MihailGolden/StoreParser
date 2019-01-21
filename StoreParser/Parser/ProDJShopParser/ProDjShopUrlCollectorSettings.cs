@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StoreParser.Parser.ProDjShopUrlCollector
+namespace StoreParser.Parser.ProDJShopParser
 {
-    class ProDjShopUrlCollectorSettings : IUrlCollectorSettings
+    public class ProDjShopUrlCollectorSettings : IUrlCollectorSettings
     {
         public string BaseUrl { get; set; } = "https://www.prodj.com.ua/studio-monitors";
         public string Prefix { get; set; } = "?page={CurrentId}";

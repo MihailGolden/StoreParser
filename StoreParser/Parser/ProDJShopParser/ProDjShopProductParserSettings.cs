@@ -1,6 +1,6 @@
 ﻿using StoreParser.Parser.Interfaces;
 
-namespace StoreParser.Parser.ProDjShopUrlCollector
+namespace StoreParser.Parser.ProDJShopParser
 {
     public class ProDjShopProductParserSettings : IProductParserSettings
     {

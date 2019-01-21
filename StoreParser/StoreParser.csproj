@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Parser\DadaAccess\" />
+    <Folder Include="Parser\DataAccess\" />
   </ItemGroup>
 
 </Project>

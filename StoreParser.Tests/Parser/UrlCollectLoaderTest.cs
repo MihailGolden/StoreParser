@@ -1,4 +1,5 @@
-﻿using StoreParser.Parser;
+﻿using StoreParser.Parser.ProDJShopParser;
+using StoreParser.Parser;
 using Xunit;
 
 namespace StoreParser.Tests.Parser
@@ -9,22 +10,19 @@ namespace StoreParser.Tests.Parser
         public async void UrlCollectLoaderTestHtmsPageAsString()
         {
             // Arrange
-            //ProDjShopUrlCollectorSettings settings = 
-            //ProductLoader loader = new ProductLoader();
-            //string url = "https://www.prodj.com.ua/studio-monitors/brand:monkey-banana/";
-            //string startsWith = "<!DOCTYPE html>";
-            //string endsWith = "</html>";
+            ProDjShopUrlCollectorSettings settings = new ProDjShopUrlCollectorSettings();
+            UrlCollectLoader loader = new UrlCollectLoader(settings);
+            int pageId = 5;
 
-            //// Act
-            //string result = await loader.LoadAsync(url);
+
+            // Act
+            var result = await loader.GetSourceByPageIdAsync(pageId);
 
 
             // Assert
-            //Assert.NotNull(result);
-
-            //Assert.IsType<string>(result);
-            //Assert.EndsWith(endsWith, result);
-            //Assert.StartsWith(startsWith, result);
+            Assert.NotNull(result);
+            Assert.IsType<string>(result);
+            Assert.NotEmpty(result);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using StoreParser.Models;
-using StoreParser.Parser.ProDjShopUrlCollector;
+using StoreParser.Parser.ProDJShopParser;
 using System.Collections.Generic;
 
 namespace StoreParser.Parser

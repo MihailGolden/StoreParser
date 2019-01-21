@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StoreParser.Parser.Interfaces
 {
-    interface IUrlCollectorSettings
+    public interface IUrlCollectorSettings
     {
         string BaseUrl { get; set; }
         string Prefix { get; set; }

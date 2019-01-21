@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StoreParser.Parser.Interfaces
 {
-    interface IProductParserSettings
+    public interface IProductParserSettings
     {
         string Url { get; set; }
         string PricePattern { get; set; }

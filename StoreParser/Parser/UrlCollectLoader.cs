@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StoreParser.Parser
 {
-    class UrlCollectLoader
+    public class UrlCollectLoader
     {
         readonly HttpClient client;
         readonly string url;
@@ -16,7 +16,7 @@ namespace StoreParser.Parser
             url = $"{settings.BaseUrl}/{settings.Prefix}";
         }
 
-        public async Task<string> GetSourceByPageId(int id)
+        public async Task<string> GetSourceByPageIdAsync(int id)
         {
             var currentUrl = url.Replace("{CurrentId}", id.ToString());
             var response = await client.GetAsync(currentUrl);
